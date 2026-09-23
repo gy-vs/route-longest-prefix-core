@@ -1,1 +1,16 @@
-export type Route<V>={network:Uint8Array,prefix:number,value:V};export class RouteTable<V>{#routes:Route<V>[]=[];add(route:Route<V>){this.#routes.push(route)}lookup(address:Uint8Array){return this.#routes.filter(route=>matches(route,address)).sort((a,b)=>b.prefix-a.prefix)[0]?.value}}function matches<V>(route:Route<V>,address:Uint8Array){for(let bit=0;bit<route.prefix;bit++){const mask=128>>(bit%8);if((route.network[bit>>3]&mask)!==(address[bit>>3]&mask))return false}return true}
+export {
+  FAMILY_BITS,
+  FAMILY_BYTES,
+  convertMappedAddress,
+  convertMappedPrefix,
+  formatAddress,
+  formatPrefix,
+  isIPv4Mapped,
+  normalizeAddress,
+  normalizePrefix,
+  parseAddress,
+  parsePrefix,
+} from './ip.js';
+export type { Address, Family, MappedOptions, Prefix } from './ip.js';
+export { PrefixTable } from './table.js';
+export type { LookupResult, MatchedPrefix } from './table.js';

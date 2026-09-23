@@ -1,1 +1,0 @@
-import{expect,it}from'vitest';import{RouteTable}from'../src/index.js';it('matches',()=>{const x=new RouteTable<string>();x.add({network:Uint8Array.from([10]),prefix:8,value:'a'});expect(x.lookup(Uint8Array.from([10]))).toBe('a')});
